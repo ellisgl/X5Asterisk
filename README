@@ -1,1 +1,60 @@
 Node.JS Asterisk Manager Event handler.
+
+Usage
+
+var ast = require("./libs/X5Asterisk/x5asterisk");
+var am  = new ast.AsteriskManager(
+{
+    user            : "admin",
+    password        : "amp111",
+    host            : "localhost",
+    port            : 5038,
+    events          : "on",
+    debug           : "off",
+    inbound         : ["ext-did"], // Context(s) for inbound calls
+    outbound        : [],          // Context(s) for outbound calls
+    internal        : [],          // Context(s) for internal calls
+    connect_timeout : 0
+});
+
+// Perform incoming call tasks
+am.addListener("incomingcall", function(info)
+{
+    // Do stuff
+});
+
+// Caller ID info
+am.addListener("callerid", function(from)
+{
+    // Do stuff
+});
+
+// Call connected to someone
+am.addListener("callconnected", function(info)
+{
+    // Do stuff
+});
+
+// Call disconnected from end point
+am.addListener("calldisconnected", function(from, to)
+{
+    // Do stuff
+});
+
+// Call put on hold
+am.addListener("hold", function(participant)
+{
+    // Do stuff
+});
+
+// Call taken off hold
+am.addListener("unhold", function(participant)
+{
+    // Do stuff
+});
+
+// Hangup
+am.addListener("hangup", function(participant, code, text)
+{
+    // Do stuff
+});
